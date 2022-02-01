@@ -1,7 +1,4 @@
-﻿// Component of the Unity Localisation System developed by Nathan Hodson (Subgiant Games) based off of the excellent videos by Matt of GameDevGuide on YouTube
-// Use it how you like but please make sure to credit me if you do!
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +27,8 @@ public class LocalisationSystem : MonoBehaviour
     public static Dictionary<string, string> localisedFR;
     public static Dictionary<string, string> localisedJA;
     public static Dictionary<string, string> localisedKO;
+
+    public static Language fallbackLang = Language.EnglishUK;
 
     public static Dictionary<string, string> GetDictionaryForEditor() 
     {
@@ -75,25 +74,95 @@ public class LocalisationSystem : MonoBehaviour
       switch(language)
       {
         case Language.EnglishUS:
-          localisedEN_US.TryGetValue(key, out value);
+          bool get = localisedEN_US.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.EnglishUK:
-          localisedEN_UK.TryGetValue(key, out value);
+          bool get = localisedEN_UK.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.Spanish:
-          localisedES.TryGetValue(key, out value);
+          bool get = localisedES.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.German:
-          localisedDE.TryGetValue(key, out value);
+          bool get = localisedDE.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.French:
-          localisedFR.TryGetValue(key, out value);
+          bool get = localisedFR.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.Japanese:
-          localisedJA.TryGetValue(key, out value);
+          bool get = localisedJA.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
         case Language.Korean:
-          localisedKO.TryGetValue(key, out value);
+          bool get = localisedKO.TryGetValue(key, out value);
+
+          if (get == false) {
+            Debug.Log("Error: No suitable value found for key " + key + ", trying fallback language.");
+
+            get = fallbackLang.TryGetValue(key, out value);
+
+            if (get == false) {
+              Debug.Log("Error: No suitable value found for key " + key + " in fallback language!");
+            }
+          }
           break;
       }
 
